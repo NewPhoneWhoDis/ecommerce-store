@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment } from "react";
-import { ReactComponent as Logo } from "../assets/crown.svg";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
+import "./navbar.styles.scss";
 
 const Navbar = () => {
     return (

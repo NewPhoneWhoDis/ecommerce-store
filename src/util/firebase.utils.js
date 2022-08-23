@@ -38,4 +38,16 @@ export const creatUserDocumentFromAuth = async (userAuth) => {
 
     //Snapshot = data/specific kind of object
     const userSnapshot = await getDoc(userDocumentReference)
+
+    if (!userSnapshot.exists()) {
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            await setDoc(userDocumentReference, { displayName, email, createdAt })
+        } catch (error) {
+            console.log('error creating the user', error.message);
+        }
+    }
+    return userDocumentReference;
 }

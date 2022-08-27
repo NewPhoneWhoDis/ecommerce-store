@@ -6,7 +6,7 @@ import {
     creatUserDocumentFromAuth,
     signInWithGoogleRedirect,
 } from "../../util/firebase.utils";
-//! Empty array means: run the function once, when the component mounts
+import { SignUpForm } from "../../components/sign-up/sign-up-form.component";
 const SignIn = () => {
     useEffect(async () => {
         const response = await getRedirectResult(auth);
@@ -15,6 +15,10 @@ const SignIn = () => {
                 response.user
             );
         }
+
+        return () => {
+            console.log("This will be logged on unmount");
+        };
     }, []);
 
     const logGoogleUser = async () => {
@@ -27,9 +31,7 @@ const SignIn = () => {
         <div>
             <h1>Sign In Page</h1>
             <button onClick={logGoogleUser}>Sign in with google </button>
-            <button onClick={signInWithGoogleRedirect}>
-                Sign in with google{" "}
-            </button>
+            <SignIn />
         </div>
     );
 };

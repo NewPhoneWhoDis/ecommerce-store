@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import "./navbar.styles.scss";
 import { AppBar, Toolbar, Tabs, Tab, Typography } from "@mui/material";
+import SignIn from "../auth/sign-in";
 
 const Navbar = () => {
     return (
@@ -15,7 +16,11 @@ const Navbar = () => {
                         </Link>
                     </Typography>
                     <Tabs>
-                        <Link className="nav-links-container" to="/sign-in">
+                        <Link
+                            className="nav-links-container"
+                            to="/sign-in"
+                            element={<SignIn />}
+                        >
                             <Tab
                                 sx={{
                                     color: "white",

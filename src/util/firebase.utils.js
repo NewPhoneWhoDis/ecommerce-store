@@ -21,7 +21,7 @@ const firebaseConfig = {
     appId: "1:110682019219:web:ddfe53647d3294f76d0466"
 };
 
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
@@ -30,3 +30,24 @@ googleProvider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+
+export const db = getFirestore();
+
+export const creatUserDocumentFromAuth = async (userAuth) => {
+    const userDocumentReference = doc(db, 'users', userAuth.uid);
+
+    //Snapshot = data/specific kind of object
+    const userSnapshot = await getDoc(userDocumentReference)
+
+    if (!userSnapshot.exists()) {
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            await setDoc(userDocumentReference, { displayName, email, createdAt })
+        } catch (error) {
+            console.log('error has occured while creating the user', error.message);
+        }
+    }
+    return userDocumentReference;
+}

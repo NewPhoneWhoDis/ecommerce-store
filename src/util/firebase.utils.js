@@ -29,9 +29,10 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-
 export const db = getFirestore();
+
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const creatUserDocumentFromAuth = async (userAuth) => {
     const userDocumentReference = doc(db, 'users', userAuth.uid);

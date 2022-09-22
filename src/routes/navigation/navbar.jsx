@@ -8,6 +8,7 @@ import SignIn from "../auth/sign-in";
 const Navbar = () => {
     return (
         <Fragment>
+<<<<<<< HEAD
             <AppBar sx={{ background: "#000" }}>
                 <Toolbar>
                     <Typography>
@@ -63,6 +64,21 @@ const Navbar = () => {
                     </Tabs>
                 </Toolbar>
             </AppBar>
+=======
+            <div className="navigation">
+                <Link className="logo-container" to="/">
+                    <Logo className="logo" />
+                </Link>
+                <div className="nav-links-container">
+                    <Link className="nav-link" to="/shop">
+                        Shop 
+                    </Link>
+                    <Link className="nav-link" to="/sign-in">
+                        Sign-in
+                    </Link>
+                </div>
+            </div>
+>>>>>>> revert-1-develop
             <Outlet />
         </Fragment>
     );

@@ -21,24 +21,11 @@ const firebaseConfig = {
     appId: "1:110682019219:web:ddfe53647d3294f76d0466"
 };
 
-<<<<<<< HEAD
-// Initialize Firebase
-=======
->>>>>>> revert-1-develop
 const firebaseApp = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
     prompt: "select_account"
-<<<<<<< HEAD
-})
-
-export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider)
-export const db = getFirestore();
-
-=======
 });
 
 export const auth = getAuth();
@@ -47,7 +34,6 @@ export const db = getFirestore();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
->>>>>>> revert-1-develop
 export const creatUserDocumentFromAuth = async (userAuth) => {
     const userDocumentReference = doc(db, 'users', userAuth.uid);
 
@@ -61,11 +47,7 @@ export const creatUserDocumentFromAuth = async (userAuth) => {
         try {
             await setDoc(userDocumentReference, { displayName, email, createdAt })
         } catch (error) {
-<<<<<<< HEAD
-            console.log('error creating the user', error.message);
-=======
             console.log('error has occured while creating the user', error.message);
->>>>>>> revert-1-develop
         }
     }
     return userDocumentReference;

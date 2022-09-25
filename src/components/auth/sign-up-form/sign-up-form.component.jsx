@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createAuthUser } from "../../../util/firebase.utils";
 
 const defaultFormField = {
     name: "",
@@ -7,19 +8,36 @@ const defaultFormField = {
     confirm_password: "",
 }
 
+
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormField);
     const { name, email, password, confirm_password } = formFields;
-
+    
     console.log(formFields);
-    const handleChange = (e) =>     {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormFields({ ...formFields, [name]: value });
     };
+    
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (password !== confirm_password) {
+            alert("Passwords do not match");
+            return;
+        }
+        
+        try {
+            const response = await createAuthUser(email, password);
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+    
+    
     return (
         <div>
             <h1>Sign up with e-mail</h1>
-            <form onSubmit={() => {}}>
+            <form onSubmit={handleSubmit}>
                 <label>Name</label>
                 <input type="text" name="name" placeholder="Enter your name" 
                 value={name} required onChange={handleChange}/>
@@ -29,11 +47,11 @@ const SignUpForm = () => {
                 value={email} required onChange={handleChange}/>
 
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Enter your password" 
+                <input type="password" minLength={8} name="password" placeholder="Enter your password" 
                 value={password} required onChange={handleChange}/>
 
                 <label>Confirm Password</label>
-                <input type="password" name="confirm_password" placeholder="Confirm your password" 
+                <input type="password" minLength={8} name="confirm_password" placeholder="Confirm your password" 
                 value={confirm_password} required onChange={handleChange}/>
 
                 <button type="submit">Sign up</button>

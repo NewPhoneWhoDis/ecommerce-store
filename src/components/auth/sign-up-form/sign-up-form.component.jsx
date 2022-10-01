@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createAuthUser, creatUserDocumentFromAuth } from "../../../util/firebase.utils";
 import FormInput from "../../form-input/form-input.component";
+import './sign-up-form.styles.scss';
 
 const defaultFormField = {
     name: "",
@@ -46,8 +47,9 @@ const SignUpForm = () => {
     
     
     return (
-        <div>
-            <h1>Sign up with e-mail</h1>
+        <div className="sign-up-container">
+            <h2>Don't have an account?</h2>
+            <span>Sign up with your e-mail now!</span>
             <form onSubmit={handleSubmit}>
                 <FormInput label="Name" type="text" name="name"    
                 value={name} required onChange={handleChange}/>
